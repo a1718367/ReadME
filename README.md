@@ -3,7 +3,7 @@
 Read Me
 
 ## Description:
-CLI readme generator
+CLI Generated Readme.md
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ CLI readme generator
 ## Installation
 Axios, fs, util
 ## Usage
-Generate Github readme.md from CLI
+Generate Readme.md for Github Repository via CLI.
 ## License
 none
 ## Contributing
