@@ -48,7 +48,7 @@ const rmquestion = [
         name: "license",
     },
     {
-        message: "Contributing party's infoation :",
+        message: "Contributing party's Information :",
         type: "input",
         name: "contribution",
     },
@@ -76,26 +76,36 @@ function checkgit(ans){
     const gituser = ans.username;
     const gitrepo = ans.gitreponame;
     const queryUrl = `https://api.github.com/users/${gituser}/repos?per_page=100`;
-    
+    const emailUrl = `https://api.github.com/users/${gituser}`;
     if (gituser == "" ){
         console.log("Username Needed.");
     }else if(gitrepo == ""){
         console.log("Repository Name Needed.")
     }else{
-        axios.get(queryUrl).then((res)=>{
-            const reponame = res.data.map(function(repo){return repo.name;});
+        axios.all([
+            axios.get(queryUrl),
+            axios.get(emailUrl)])
+            .then((resArr)=>{
+            const reponame = resArr[0].data.map(function(repo){return repo.name;});
             const lcreponame = reponame.map(function(lc){return lc.toLowerCase();})
             let g = lcreponame.indexOf(gitrepo);
+            const email = resArr[1].data;
         if(reponame == ""){console.log("Invalid Github Name.")}
         else if(g==-1){console.log("Repository Not in your Github.")}
         else{rmquserinput()
             .then((res)=>{
             const rmans = res;
-            console.log(rmans)});}
+            console.log(rmans);
+            const readme = markdown(rmans, email);
+            writeFileAsunc("ReadMe.md", readme).then(function(){
+                console.log("Successfully Generated ReadMe.md file")
+            })
+
+            
+        });}
         })
     }
 }
-
 
 
 async function init(){

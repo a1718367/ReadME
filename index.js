@@ -33,23 +33,27 @@ function userinput(){
 function checkgit(ans){
     const gituser = ans.username;
     const gitrepo = ans.gitreponame;
-    const queryUrl = `https://api.github.com/users/${gituser}`;
+    const emailUrl = `https://api.github.com/users/${gituser}`;
+    const repoUrl = `https://api.github.com/users/${gituser}/repos?per_page=100`;
     try {
         if (gituser == "") throw "Username Needed";
         else if (gitrepo == "") throw "Repository Name Needed";
         else{
-            axios.get(queryUrl).then((res)=>{
-                console.log(res.data.name);
-                // const reponame = res.data.map(function(repo){return repo.name;});
-                // const lcreponame = reponame.map(function(lc){return lc.toLowerCase();})
-                // let g = lcreponame.indexOf(gitrepo);
-                // try {
-                //     if(reponame == "") throw "Invalid Github Name";
-                //     if(g == -1) throw "Repository Not on GitHhub, Create New Repo";
-                // } catch (err) {
-                //     console.log(err);
-                // }
-                // console.log(lcreponame)    
+            axios.all([
+                axios.get(emailUrl),
+                axios.get(repoUrl)])
+                .then((resArr)=>{
+                console.log(resArr[0].name);
+                const reponame = resArr[1].data.map(function(repo){return repo.name;});
+                const lcreponame = reponame.map(function(lc){return lc.toLowerCase();})
+                let g = lcreponame.indexOf(gitrepo);
+                try {
+                    if(reponame == "") throw "Invalid Github Name";
+                    if(g == -1) throw "Repository Not on GitHhub, Create New Repo";
+                } catch (err) {
+                    console.log(err);
+                }
+                console.log(lcreponame)    
             })  
         }
 
