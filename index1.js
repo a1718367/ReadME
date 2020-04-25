@@ -69,12 +69,14 @@ function gituserinput(){
 }
 function rmquserinput(){
     return inquirer.prompt(rmquestion);
+
 }
 
 function checkgit(ans){
     const gituser = ans.username;
     const gitrepo = ans.gitreponame;
     const queryUrl = `https://api.github.com/users/${gituser}/repos?per_page=100`;
+    
     if (gituser == "" ){
         console.log("Username Needed.");
     }else if(gitrepo == ""){
@@ -86,7 +88,10 @@ function checkgit(ans){
             let g = lcreponame.indexOf(gitrepo);
         if(reponame == ""){console.log("Invalid Github Name.")}
         else if(g==-1){console.log("Repository Not in your Github.")}
-        else{rmquserinput();}
+        else{rmquserinput()
+            .then((res)=>{
+            const rmans = res;
+            console.log(rmans)});}
         })
     }
 }
@@ -97,6 +102,7 @@ async function init(){
 try {
     const iniask = await gituserinput();
     checkgit(iniask);
+    
     
 } catch (error) {
     console.log(error)
