@@ -1,9 +1,9 @@
 
 ## Title: 
-test
+Read Me
 
 ## Description:
-test
+CLI readme.md Generator
 
 ## Table of Contents
 
@@ -14,17 +14,19 @@ test
 - [Testing](#test)
 
 ## Installation
-a
+Axios, fs, util
 ## Usage
-b
+Generate .md for project via CLI
 ## License
-c
+none
 ## Contributing
-d
+none
 ## Tests
-e
+none
 
 ## Contacts
 ### Author: PangSzee Ong
 ### Email: null
-<img scr = https://avatars1.githubusercontent.com/u/59127638?v=4 alt="Profile">
+<img scr = https://avatars1.githubusercontent.com/u/59127638?v=4 alt="Profile" width="100"/>
+
+![coverage](https://img.shields.io/static/v1?label=hireable&message=null&color=<brightgreen>)

@@ -28,7 +28,9 @@ ${data.test}
 ## Contacts
 ### Author: ${email.name}
 ### Email: ${email.email}
-<img scr = ${email.avatar_url} alt="Profile">
+<img scr = ${email.avatar_url} alt="Profile" width="100"/>
+
+![coverage](https://img.shields.io/static/v1?label=hireable&message=${email.hireable}&color=<brightgreen>)
 `;
 }
 
