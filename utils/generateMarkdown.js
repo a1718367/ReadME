@@ -26,8 +26,8 @@ ${data.contribution}
 ${data.test}
 
 ## Contacts
-# Author: ${email.name}
-# Email: ${email.email}
+Author: ${email.name}
+Email: ${email.email}
 <img scr = ${email.avatar_url} alt="Profile">
 `;
 }
