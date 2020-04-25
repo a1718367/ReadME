@@ -1,22 +1,22 @@
 
 ## Title: 
-Read Me
+Read Me.
 
 ## Description:
-CLI Generated Readme.md
+CLI readme Generator
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
-- [Contritors](#contribution)
+- [Contributors](#contributing)
 - [Testing](#test)
 
 ## Installation
 Axios, fs, util
 ## Usage
-Generate Readme.md for Github Repository via CLI.
+Validate user's Github and Repo name, then generate readme.md via CLI.
 ## License
 none
 ## Contributing

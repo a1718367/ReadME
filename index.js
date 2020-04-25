@@ -2,6 +2,9 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const util = require("util");
 const axios = require("axios");
+const markdown = require("./utils/generateMarkdown.js")
+
+const writeFileAsunc = util.promisify(fs.writeFile);
 
 const initquestion = [
 {
@@ -20,104 +23,100 @@ const initquestion = [
 
 const rmquestion = [
     {
-        message: "Enter your GitHub username:",
+        message: "Title for the Project :",
         type: "input",
-        name: "username",
+        name: "title",
+    },
+    {
+        message: "Description for the Repository:",
+        type: "input",
+        name: "desc",
+    },
+    {
+        message: "Infomation on Installation :",
+        type: "input",
+        name: "install",
+    },
+    {
+        message: "What is the purpose of the Project? :",
+        type: "input",
+        name: "usage",
+    },
+    {
+        message: "License infomation :",
+        type: "input",
+        name: "license",
+    },
+    {
+        message: "Contributing party's Information :",
+        type: "input",
+        name: "contribution",
+    },
+    {
+        message: "Testing Information :",
+        type: "input",
+        name: "test",
+    },
+    {
+        message: "Description for the Repository:",
+        type: "input",
+        name: "desc",
     }
 ]
 
-function userinput(){
+function gituserinput(){
     return inquirer.prompt(initquestion);
+}
+function rmquserinput(){
+    return inquirer.prompt(rmquestion);
+
 }
 
 function checkgit(ans){
     const gituser = ans.username;
     const gitrepo = ans.gitreponame;
+    const queryUrl = `https://api.github.com/users/${gituser}/repos?per_page=100`;
     const emailUrl = `https://api.github.com/users/${gituser}`;
-    const repoUrl = `https://api.github.com/users/${gituser}/repos?per_page=100`;
-    try {
-        if (gituser == "") throw "Username Needed";
-        else if (gitrepo == "") throw "Repository Name Needed";
-        else{
-            axios.all([
-                axios.get(emailUrl),
-                axios.get(repoUrl)])
-                .then((resArr)=>{
-                console.log(resArr[0].name);
-                const reponame = resArr[1].data.map(function(repo){return repo.name;});
-                const lcreponame = reponame.map(function(lc){return lc.toLowerCase();})
-                let g = lcreponame.indexOf(gitrepo);
-                try {
-                    if(reponame == "") throw "Invalid Github Name";
-                    if(g == -1) throw "Repository Not on GitHhub, Create New Repo";
-                } catch (err) {
-                    console.log(err);
-                }
-                console.log(lcreponame)    
-            })  
-        }
+    if (gituser == "" ){
+        console.log("Username Needed.");
+    }else if(gitrepo == ""){
+        console.log("Repository Name Needed.")
+    }else{
+        axios.all([
+            axios.get(queryUrl),
+            axios.get(emailUrl)])
+            .then((resArr)=>{
+            const reponame = resArr[0].data.map(function(repo){return repo.name;});
+            const lcreponame = reponame.map(function(lc){return lc.toLowerCase();})
+            let g = lcreponame.indexOf(gitrepo);
+            const email = resArr[1].data;
+        if(reponame == ""){console.log("Invalid Github Name.")}
+        else if(g==-1){console.log("Repository Not in your Github.")}
+        else{rmquserinput()
+            .then((res)=>{
+            const rmans = res;
+            console.log(rmans);
+            const readme = markdown(rmans, email);
+            writeFileAsunc("ReadMe.md", readme).then(function(){
+                console.log("Successfully Generated ReadMe.md file")
+            })
 
-    } catch (error) {
-        console.log(error)
+            
+        });}
+        })
     }
-
 }
-
-
-function writeToFile(fileName, data) {
-}
-
 
 
 async function init(){
-    try{
-        const ask = await userinput();
-        checkgit(ask)
-
-    }
-    catch(err){
-        console.log(err)
-    }
+try {
+    const iniask = await gituserinput();
+    checkgit(iniask);
     
+    
+} catch (error) {
+    console.log(error)
+}
 }
 
 init();
-
-
-
-
-//###### Redundant ######//
-
-// function init() {
-//     inquirer.prompt(questions)
-//     .then(function({username}){
-//         const queryUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
-
-//      axios.get(queryUrl).then((res)=>{
-//          const reponame = res.data.map(function(repo){return repo.name;});
-//          console.log(reponame);
-//      })   
-//     })
-
-// }
-
-// return inquirer.prompt(questions)
-// .then(function(response){
-//     const gituser = response.username;
-//     const gitrepo = response.gitreponame;
-//     const queryUrl = `https://api.github.com/users/${gituser}/repos?per_page=100`;
-//     console.log(gituser,gitrepo);
-
-
-
-// })
-
-    // const queryUrl = `https://api.github.com/users/${gituser}/repos?per_page=100`;
-    // console.log(gituser,gitrepo);
-    // const lc = gitrepo.toLowerCase();
-    // console.log(lc);
-    // axios.get(queryUrl).then((res)=>{
-    // const reponame = res.data.map(function(repo){return repo.name;});
-    // let g = reponame.indexOf(gitrepo);
-    // if(g == -1){(console.log("Repository Not on GitHhub, Create New Repo"))}
-    // })

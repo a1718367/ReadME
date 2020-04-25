@@ -11,7 +11,7 @@ ${data.desc}
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
-- [Contritors](#contribution)
+- [Contributors](#contributing)
 - [Testing](#test)
 
 ## Installation
