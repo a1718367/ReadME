@@ -1,9 +1,9 @@
 
 ## Title: 
-Read Me
+test
 
 ## Description:
-CLI readme.md generator
+test
 
 ## Table of Contents
 
@@ -14,17 +14,17 @@ CLI readme.md generator
 - [Testing](#test)
 
 ## Installation
-Axios, fs, util, markdown
+a
 ## Usage
-Validate user's Github and Repo name then generate readme.md via CLI
+b
 ## License
-none
+c
 ## Contributing
-none
+d
 ## Tests
-none
+e
 
 ## Contacts
-Author: PangSzee Ong
-Email: null
+### Author: PangSzee Ong
+### Email: null
 <img scr = https://avatars1.githubusercontent.com/u/59127638?v=4 alt="Profile">
