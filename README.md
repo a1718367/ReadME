@@ -1,9 +1,9 @@
 
 ## Title: 
-Read Me
+Read ME
 
 ## Description:
-CLI .md generator
+CLI readme.md generator
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ CLI .md generator
 ## Installation
 Axios, fs, util
 ## Usage
-Generator .md from CLI for Github Repository
+Generate readme for Github Repository from CLI.
 ## License
 none
 ## Contributing
@@ -27,6 +27,6 @@ none
 ## Contacts
 ### Author: PangSzee Ong
 ### Email: null
-<img scr = "https://avatars1.githubusercontent.com/u/59127638?v=4" alt="Profile" width="100"/>
+<img src = "https://avatars1.githubusercontent.com/u/59127638?v=4" alt="Profile" width="100"/>
 
 ![coverage](https://img.shields.io/static/v1?label=hireable&message=null&color=<brightgreen>)
