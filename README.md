@@ -1,9 +1,9 @@
 
 ## Title: 
-Read Me.
+Read Me Generator
 
 ## Description:
-CLI readme Generator
+User input data via CLI to Generatre Readme.md for Git hub
 
 ## Table of Contents
 
@@ -11,18 +11,21 @@ CLI readme Generator
 - [Usage](#usage)
 - [License](#license)
 - [Contributors](#contributing)
-- [Testing](#test)
+- [Testing](#tests)
+- [Project Link](#link)
 
 ## Installation
-Axios, fs, util
+Axios
 ## Usage
-Validate user's Github and Repo name, then generate readme.md via CLI.
+An easy way to generate markdown file Read me for Git hub Repository
 ## License
-none
+MIT License
 ## Contributing
-none
+PSO Co.
 ## Tests
 none
+## Link
+ https://drive.google.com/file/d/1nNzZ9yYsWUkMmtKRMxIQXyRsjAXIivdI/view?usp=sharing
 
 ## Contacts
 ### Author: PangSzee Ong

@@ -58,9 +58,9 @@ const rmquestion = [
         name: "test",
     },
     {
-        message: "Description for the Repository:",
+        message: "Link to Project :",
         type: "input",
-        name: "desc",
+        name: "url",
     }
 ]
 

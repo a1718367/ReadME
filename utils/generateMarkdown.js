@@ -12,7 +12,8 @@ ${data.desc}
 - [Usage](#usage)
 - [License](#license)
 - [Contributors](#contributing)
-- [Testing](#test)
+- [Testing](#tests)
+- [Project Link](#link)
 
 ## Installation
 ${data.install}
@@ -24,6 +25,8 @@ ${data.license}
 ${data.contribution}
 ## Tests
 ${data.test}
+## Link
+${data.url}
 
 ## Contacts
 ### Author: ${email.name}
